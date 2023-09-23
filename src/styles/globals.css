@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a,
+button {
+  cursor: pointer;
+}
+
+p, address {
+  @apply text-blue
+}
+
+h1 {
+  @apply lg:text-7xl uppercase md:text-6xl sm:text-5xl text-4xl max-[340px]:text-3xl
+}
+h2 {
+  @apply md:text-5xl text-3xl max-[340px]:text-2xl
+}
+h3 {
+  @apply md:text-2xl text-xl
+}

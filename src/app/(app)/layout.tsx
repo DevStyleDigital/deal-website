@@ -1,0 +1,155 @@
+import { CoreAg } from 'assets/core-ag';
+import { Logo } from 'assets/logo';
+import { Dialog, DialogContent, DialogHeader, DialogTrigger } from 'components/ui/dialog';
+import { Facebook, Instagram, MapPin, Menu, Phone } from 'lucide-react';
+import Link from 'next/link';
+
+const AppLayout: BTypes.NLPage = ({ children }) => {
+  return (
+    <>
+      <header className="absolute top-0 left-0 w-full z-50">
+        <Dialog>
+          <nav
+            className="mx-auto flex max-w-7xl items-end justify-between p-6 lg:px-8"
+            aria-label="Global"
+          >
+            <div className="flex lg:flex-1">
+              <Link href="/" className="-m-1.5 p-1.5">
+                <span className="sr-only">Deal Empreendimentos</span>
+                <Logo aria-hidden />
+              </Link>
+            </div>
+            <div className="flex lg:hidden">
+              <DialogTrigger asChild>
+                <button
+                  type="button"
+                  className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                >
+                  <span className="sr-only">Abrir Menu</span>
+                  <Menu className="h-6 w-6 text-white" aria-hidden="true" />
+                </button>
+              </DialogTrigger>
+            </div>
+            <div className="flex space-x-4 pb-4 max-lg:hidden">
+              <Link href="/sobre" className="uppercase text-white tracking-wider">
+                Sobre nós
+              </Link>
+              <Link
+                href="/empreendimentos"
+                className="uppercase text-white tracking-wider"
+              >
+                Empreendimentos
+              </Link>
+              <Link
+                href="/personalizacao"
+                className="uppercase text-white tracking-wider"
+              >
+                Personalização
+              </Link>
+              <Link href="/contato" className="uppercase text-white tracking-wider">
+                Contato
+              </Link>
+            </div>
+          </nav>
+          <DialogContent className="bg-white max-sm:top-0 max-sm:!translate-y-0 max-sm:max-w-full">
+            <DialogHeader>
+              <Link href="/" className="-m-1.5 p-1.5">
+                <span className="sr-only">Deal Empreendimentos</span>
+                <Logo className="fill-black" />
+              </Link>
+            </DialogHeader>
+            <div className="mt-6 flow-root">
+              <div className="-my-6 divide-y divide-gray-500/10">
+                <div className="space-y-2 py-6">
+                  <Link
+                    href="/sobre"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                  >
+                    Sobre nós
+                  </Link>
+                  <Link
+                    href="/empreendimentos"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                  >
+                    Empreendimentos
+                  </Link>
+                  <Link
+                    href="/personalizacao"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                  >
+                    Personalização
+                  </Link>
+                  <Link
+                    href="/contato"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                  >
+                    Contato
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </header>
+      <main>{children}</main>
+      <footer className="bg-blue text-white py-8 [&_h3]:text-gold">
+        <span className="w-full bg-gold h-px mt-2 mb-8 block" />
+        <div className="max-w-7xl flex flex-wrap justify-between mx-auto px-8 gap-8">
+          <div className="flex max-sm:justify-center max-sm:w-full">
+            <span className="sr-only">Deal Empreendimentos</span>
+            <Logo className="w-auto h-[6rem]" aria-hidden />
+          </div>
+
+          <div className="flex flex-col space-y-4 max-sm:items-center max-sm:w-full">
+            <h3>Fale Conosco</h3>
+            <div className="flex space-x-3">
+              <MapPin aria-hidden />
+              <address className="not-italic text-white">
+                Av. Ademar de Barros, 195 <br /> Vila Trujillo, Sorocaba/SP
+              </address>
+            </div>
+            <div className="flex space-x-3">
+              <Phone aria-hidden />
+              <p className="text-white">
+                (15) 99817-9909 <br /> (15) 3318-1531
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-4 max-xs:items-center max-xs:w-full">
+            <h3>Empreendimentos</h3>
+            <div>
+              <ul>
+                <li>Haus Residence Club</li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col space-y-4 max-xs:items-center max-xs:w-full">
+            <h3>Siga-Nos</h3>
+            <div className="flex flex-col justify-between h-full space-y-8">
+              <ul className="flex space-x-3 max-xs:justify-center">
+                <li>
+                  <Link href="#" aria-label="Facebook">
+                    <Facebook />
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" aria-label="Instagram">
+                    <Instagram />
+                  </Link>
+                </li>
+              </ul>
+              <div>
+                <span className="sr-only">
+                  <span lang="en-us">Intelligence by</span> Core.Ag
+                </span>
+                <CoreAg aria-hidden className="h-3 w-auto" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export default AppLayout;
