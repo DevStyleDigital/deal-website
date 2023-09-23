@@ -65,9 +65,9 @@ export const Timeline = () => {
           1180: { slidesPerView: 4 },
           1460: { slidesPerView: 5 },
         }}
-        className="lg:pl-[calc((100vw-1280px)-((100vw-1280px)/2))] cursor-grab active:cursor-grabbing"
+        className="lg:!pl-[calc((100vw-1280px)-((100vw-1280px)/2))] cursor-grab active:cursor-grabbing"
       >
-        <SwiperSlide className="flex h-max pb-10 flex-col space-y-8 items-center justify-center">
+        <SwiperSlide className="!flex !h-max pb-10 flex-col space-y-8 items-center justify-center">
           <div className="relative flex flex-col w-full items-center">
             <p className="text-4xl mb-8">
               <time>Fundação</time>
