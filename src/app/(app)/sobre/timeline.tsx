@@ -67,7 +67,7 @@ export const Timeline = () => {
         }}
         className="lg:pl-[calc((100vw-1280px)-((100vw-1280px)/2))] cursor-grab active:cursor-grabbing"
       >
-        <SwiperSlide className="flex h-max pb-10 max-lg:justify-center flex-col space-y-8 items-center justify-center">
+        <SwiperSlide className="flex h-max pb-10 flex-col space-y-8 items-center justify-center">
           <div className="relative flex flex-col w-full items-center">
             <p className="text-4xl mb-8">
               <time>Fundação</time>
@@ -83,7 +83,7 @@ export const Timeline = () => {
         {PROJECTS.map((project, i) => (
           <SwiperSlide
             key={project.id}
-            className="flex h-auto pb-10 max-lg:justify-center flex-col space-y-8 items-center justify-center"
+            className="flex h-auto pb-10 flex-col text-center space-y-8 items-center justify-center"
           >
             <div className="relative flex flex-col w-full items-center">
               <p className="text-4xl mb-8">

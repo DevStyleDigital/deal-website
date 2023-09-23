@@ -57,7 +57,7 @@ const About = () => {
             encontra a paixão por realizar sonhos.
           </p>
 
-          <ul className="flex lg:flex-col lg:space-y-8 max-lg:space-x-8 max-lg:mt-8">
+          <ul className="flex lg:flex-col lg:space-y-8 max-lg:gap-8 max-lg:mt-8 flex-wrap">
             <li className="text-center p-6 border-gold border-[1px] w-[170px] flex flex-col items-center justify-center">
               <span className="text-7xl text-gold">13</span>
               <span>anos de experiência</span>
