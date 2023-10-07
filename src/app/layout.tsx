@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from 'contexts/auth';
 
 const roboto = Roboto({
   weight: ['400', '700', '900'],
@@ -23,10 +24,12 @@ export const metadata: Metadata = {
 const RootLayout: BTypes.NLPage = ({ children }) => {
   return (
     <html lang="pt-br" className={roboto.className}>
-      <body className="min-h-screen flex flex-col">
-        <Toast />
-        {children}
-      </body>
+      <AuthProvider>
+        <body className="min-h-screen flex flex-col">
+          <Toast />
+          {children}
+        </body>
+      </AuthProvider>
     </html>
   );
 };

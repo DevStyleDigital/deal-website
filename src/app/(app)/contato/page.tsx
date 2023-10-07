@@ -33,13 +33,13 @@ const About = () => {
           </Button>
           <div className="flex flex-col space-y-4 max-sm:items-center max-sm:w-full">
             <div className="flex space-x-3">
-              <MapPin aria-hidden />
+              <MapPin aria-hidden className="text-blue" />
               <address className="not-italic">
                 Av. Ademar de Barros, 195 <br /> Vila Trujillo, Sorocaba/SP
               </address>
             </div>
             <div className="flex space-x-3">
-              <Phone aria-hidden />
+              <Phone aria-hidden className="text-blue" />
               <p>(15) 99817-9909 • (15) 3318-1531</p>
             </div>
           </div>

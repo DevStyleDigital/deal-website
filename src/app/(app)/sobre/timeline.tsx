@@ -1,4 +1,5 @@
 'use client';
+import { Chevron } from 'assets/chevron';
 import { Logo } from 'assets/logo';
 import Image from 'next/image';
 import { Navigation, A11y } from 'swiper/modules';
@@ -32,22 +33,6 @@ const PROJECTS = [
     id: 'vivenda',
   },
 ];
-
-const Chevron: BTypes.FCIcon = ({ ...props }) => (
-  <svg
-    width="37"
-    height="12"
-    viewBox="0 0 37 12"
-    fill="black"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
-    <path
-      d="M36.5303 6.53033C36.8232 6.23744 36.8232 5.76257 36.5303 5.46967L31.7574 0.696702C31.4645 0.403808 30.9896 0.403808 30.6967 0.696702C30.4038 0.989595 30.4038 1.46447 30.6967 1.75736L34.9393 6L30.6967 10.2426C30.4038 10.5355 30.4038 11.0104 30.6967 11.3033C30.9896 11.5962 31.4645 11.5962 31.7574 11.3033L36.5303 6.53033ZM-6.55671e-08 6.75L36 6.75L36 5.25L6.55671e-08 5.25L-6.55671e-08 6.75Z"
-      fill="currentColor"
-    />
-  </svg>
-);
 
 export const Timeline = () => {
   return (

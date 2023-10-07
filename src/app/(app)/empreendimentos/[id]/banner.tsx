@@ -1,6 +1,7 @@
 import { Button } from 'components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 const banners: Record<
   'home' | 'personalization' | 'about' | 'enterprises' | 'contact',
@@ -25,38 +26,31 @@ const banners: Record<
   contact: { subtitle: 'Fale com a Deal' },
 };
 
-export const Banner = ({ banner }: { banner: keyof typeof banners }) => {
-  const bannerSelected = banners[banner];
-
+export const Banner = ({
+  children,
+  src,
+  alt,
+}: {
+  children: React.ReactNode;
+  src: string;
+  alt: string;
+}) => {
   return (
     <div className="relative h-[calc(100vh-10rem)]">
       <Image
-        alt=""
-        src={`/banners/${banner}.webp`}
+        alt={alt}
+        src={src}
         width={5760}
         height={3280}
-        placeholder="blur"
-        blurDataURL={`../../../../public/banners/${banner}.webp`}
         className="h-full object-cover object-center"
       />
 
       <div className="absolute w-full h-full max-w-7xl left-1/2 -translate-x-1/2 top-0">
-        <div
-          className={`absolute flex flex-col space-y-4 top-1/2 mx-8 w-fit max-w-[460px] h-fit shadow-[0px_4px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl p-12 text-white ${
-            bannerSelected.invertAlign ? 'right-0' : ''
-          }`}
-        >
-          {bannerSelected.desc && <span className="text-xl">{bannerSelected.desc}</span>}
-          {bannerSelected.title && <h1>{bannerSelected.title}</h1>}
-          {bannerSelected.subtitle && <h2>{bannerSelected.subtitle}</h2>}
-          {bannerSelected.smallTitle && (
-            <h3 className="text-4xl">{bannerSelected.smallTitle}</h3>
-          )}
-          {bannerSelected.link && (
-            <Button asChild className="w-fit uppercase" variant="light">
-              <Link href={bannerSelected.link.href}>{bannerSelected.link.label}</Link>
-            </Button>
-          )}
+        <div className="absolute flex flex-col space-y-2 top-1/2 mx-8 w-fit max-w-[460px] h-fit shadow-[0px_4px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl p-12 text-white">
+          {children}
+          <Button asChild className="w-fit uppercase" variant="light">
+            <Link href="/contato">Entre agora em contato</Link>
+          </Button>
         </div>
       </div>
     </div>
