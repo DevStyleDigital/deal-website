@@ -1,21 +1,10 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from 'components/ui/form';
+import { FormControl, FormItem, FormLabel, FormMessage } from 'components/ui/form';
 import { Input } from 'components/ui/input';
 import { type UseFormReturn } from 'react-hook-form';
 import { type FormSchemaProps } from './enterprise-form';
 import { PlusCircle, Trash } from 'lucide-react';
 import { Datasheet } from 'types/enterprise';
-
-function handleDeleteItem(i: number, arr: any[]) {
-  const newArr = [...arr];
-  newArr.splice(i, 1);
-  return newArr;
-}
+import { handleDeleteItem } from 'utils/handle-delete-item';
 
 export const EnterpriseDatasheet = ({
   form,

@@ -1,9 +1,14 @@
 import { getPartialOfEnterprises } from 'utils/enterprises-func';
 import { EnterprisesSelect } from './enterprises-select';
 import { supabase } from 'services/supabase';
+import { Differentials } from './differentials';
 
 const Dash: BTypes.NPage<{}, true> = async () => {
   const enterprises = await getPartialOfEnterprises();
+  const differentials = await supabase
+    .from('section_differentials')
+    .select('*')
+    .then(({ data, error }) => (data ? data : undefined));
   const defaultEnterpriseSelected = await supabase
     .from('pages')
     .select('id, enterprise_emphasis')
@@ -22,12 +27,24 @@ const Dash: BTypes.NPage<{}, true> = async () => {
           {' "INIMAGINÁVEL"'}.
         </span>
 
-        {enterprises.length && (
+        {enterprises?.length ? (
           <EnterprisesSelect
             enterprises={enterprises}
             defaultValue={defaultEnterpriseSelected}
           />
-        )}
+        ) : null}
+      </section>
+      <section className="mx-auto max-w-7xl py-16 px-8">
+        <div>
+          <span className="text-xl uppercase block text-center">Editar</span>
+          <h1 className="text-center">Deferenciais</h1>
+        </div>
+        <span className="text-sm italic opacity-60 block text-center">
+          Os diferenciais colocados irão aparecer na página
+          {' "/personalizacao"'}.
+        </span>
+
+        <Differentials differentials={differentials} />
       </section>
     </>
   );

@@ -2,12 +2,19 @@ import { type Metadata } from 'next';
 import { Banner } from '../banner';
 import { Button } from 'components/ui/button';
 import Link from 'next/link';
+import { TalkUs } from 'components/talk-us';
+import { supabase } from 'services/supabase';
 
 export const metadata: Metadata = {
   title: 'Deal | Sobre',
 };
 
-const Personalization = () => {
+const Personalization = async () => {
+  const differentials = await supabase
+    .from('section_differentials')
+    .select('*')
+    .then(({ data, error }) => (data ? data : undefined));
+
   return (
     <>
       <Banner banner="personalization" />
@@ -44,6 +51,17 @@ const Personalization = () => {
           </div>
         </div>
       </section>
+      <section className="max-w-7xl mx-auto py-16 px-8">
+        <ul className="grid grid-cols-2 grid-flow-row gap-x-8 gap-y-8">
+          {differentials?.map((differential, i) => (
+            <li key={differential.id} className="flex items-center">
+              <span className="text-4xl text-gold mr-4">{i + 1}</span>
+              <p>{differential.desc}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <TalkUs />
     </>
   );
 };
