@@ -12,7 +12,7 @@ import { Plans } from './plans';
 
 export async function generateStaticParams() {
   const enterprises = await supabase.from('enterprise').select('id');
-  return [...(enterprises.data || []), { id: 'create' }];
+  return [...(enterprises.data || [])];
 }
 
 const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ params }) => {
