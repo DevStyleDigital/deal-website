@@ -48,8 +48,6 @@ export const Differentials = ({
               const removedItems = defaultDataIds.filter(
                 (id) => !differentialsIds.includes(id),
               );
-              console.log(differentialsIds, defaultDataIds);
-              console.log(removedItems);
               acc[1] = removedItems;
               return acc;
             },
