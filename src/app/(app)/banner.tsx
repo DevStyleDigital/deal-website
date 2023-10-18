@@ -29,7 +29,7 @@ export const Banner = ({ banner }: { banner: keyof typeof banners }) => {
   const bannerSelected = banners[banner];
 
   return (
-    <div className="relative h-[calc(100vh-10rem)]">
+    <div className="relative h-[calc(720px-10rem)]">
       <Image
         alt=""
         src={`/banners/${banner}.webp`}
