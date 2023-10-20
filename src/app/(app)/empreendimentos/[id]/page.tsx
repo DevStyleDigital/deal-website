@@ -51,8 +51,9 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
         <Image
           alt={enterprise.banner_emphasis.label}
           src={enterprise.banner_emphasis.url}
-          width={5760}
-          height={3280}
+          width={2860}
+          height={1080}
+          priority
           className="md:max-w-sm w-full h-96 max-md:mt-8 md:h-auto object-cover object-center"
         />
         <div className="space-y-8">
@@ -158,7 +159,7 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
               <p className="xs:text-end xs:w-full text-center max-xs:opacity-60">
                 {label}
               </p>
-              <p className="xs:w-full text-center">{value}</p>
+              <p className="xs:w-full max-xs:text-center">{value}</p>
             </li>
           ))}
         </ul>

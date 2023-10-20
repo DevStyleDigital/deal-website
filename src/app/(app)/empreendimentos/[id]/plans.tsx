@@ -38,8 +38,9 @@ export const Plans = ({ plans }: { plans: Enterprise['plans'] }) => {
           <Image
             alt={plans[plan].label}
             src={plans[plan].url}
-            width={5760}
-            height={3280}
+            width={2860}
+            height={1080}
+            priority
             className="w-full h-auto object-cover object-center"
           />
         </div>

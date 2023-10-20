@@ -33,10 +33,9 @@ export const Banner = ({ banner }: { banner: keyof typeof banners }) => {
       <Image
         alt=""
         src={`/banners/${banner}.webp`}
-        width={5760}
-        height={3280}
-        placeholder="blur"
-        blurDataURL={`../../../../public/banners/${banner}.webp`}
+        width={1920}
+        height={1080}
+        priority
         className="h-full object-cover object-center"
       />
 

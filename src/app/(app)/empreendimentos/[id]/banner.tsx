@@ -40,8 +40,9 @@ export const Banner = ({
       <Image
         alt={alt}
         src={src}
-        width={5760}
-        height={3280}
+        width={1920}
+        height={1080}
+        priority
         className="h-full object-cover object-center"
       />
 

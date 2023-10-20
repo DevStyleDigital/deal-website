@@ -52,8 +52,9 @@ export const Galleria = ({ galleria }: { galleria: Enterprise['galleria'] }) => 
           <Image
             src={image.url}
             alt={image.label}
-            width={5760}
-            height={3280}
+            width={2860}
+            height={1080}
+            priority
             className="min-h-[280px] sm:min-w-[500px] max-h-[4000px] min-[1060px]:max-h-[280px] min-[1060px]:max-w-[500px] object-cover"
           />
         </SwiperSlide>

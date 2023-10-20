@@ -25,8 +25,9 @@ export const EnterpriseEmphasis = ({
         <Image
           alt={enterpriseEmphasis.banner_emphasis.label}
           src={enterpriseEmphasis.banner_emphasis.url}
-          width={5760}
-          height={3280}
+          width={2860}
+          height={1080}
+          priority
           className="w-full h-auto max-h-[500px] object-cover object-center"
         />
         <span

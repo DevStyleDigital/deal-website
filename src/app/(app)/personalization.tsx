@@ -17,10 +17,9 @@ export const Personalization = () => (
         <Image
           alt=""
           src="/banners/personalization-2.webp"
-          width={5760}
-          height={3280}
-          placeholder="blur"
-          blurDataURL="../../../../public/banners/personalization-2.webp"
+          width={2860}
+          height={1080}
+          priority
           className="w-full h-auto object-cover object-center"
         />
         <span

@@ -15,8 +15,9 @@ const EnterprisesLayout: BTypes.NLPage = ({ children }) => {
           src="/banners/personalization-2.webp"
           alt=""
           className="object-[center_-35rem] absolute bottom-0 opacity-10 left-0 z-0 object-cover w-full min-w-[100rem] h-[16rem] min-h-[16rem] filter grayscale"
-          width={5760}
-          height={3280}
+          width={2860}
+          height={1080}
+          priority
         />
 
         <div className="flex flex-col w-full items-center space-y-4 py-12 max-sm:text-center px-8 relative z-10">
