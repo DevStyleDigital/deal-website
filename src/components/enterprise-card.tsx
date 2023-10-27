@@ -18,10 +18,7 @@ export const EnterpriseCard = ({
     className="group flex justify-center w-full"
   >
     <div
-      className={cn(
-        'relative max-w-sm max-h-[680px] w-max h-max overflow-hidden',
-        className,
-      )}
+      className={cn('relative max-h-[680px] w-full h-full overflow-hidden', className)}
     >
       <Image
         src={enterprise.banner_emphasis.url}
