@@ -36,7 +36,7 @@ export const SendEmailForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 flex flex-col w-full max-w-2xl"
+        className="space-y-6 flex flex-col w-full max-w-2xl pt-4"
       >
         <FormField
           control={form.control}
