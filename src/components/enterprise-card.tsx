@@ -15,7 +15,7 @@ export const EnterpriseCard = ({
 }) => (
   <Link
     href={href || `/empreendimentos/${enterprise.id}`}
-    className="group flex justify-center"
+    className="group flex justify-center w-full"
   >
     <div
       className={cn(
