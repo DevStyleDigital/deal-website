@@ -111,7 +111,10 @@ export const EnterpriseForm = ({
                 enterprise,
               })
           )
-            .then(() => router.push('/admin/dash/enterprises'))
+            .then(() => {
+              router.push('/admin/dash/enterprises');
+              router.refresh();
+            })
             .finally(() => setLoading(false));
         })}
         className="space-y-6 pb-8 pt-2 flex flex-col w-full mx-auto max-w-7xl"

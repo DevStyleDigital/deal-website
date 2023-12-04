@@ -9,7 +9,8 @@ export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/admin/dash')) {
     const cookieStore = cookies();
     const token = cookieStore.get('__AUTH')?.value;
-    if (!token || token === 'null') return notFound();
+    if (!token || token === 'null')
+      return NextResponse.redirect(new URL('/admin', request.url));
 
     const isInvalid = await supabase.auth
       .getUser(token)
