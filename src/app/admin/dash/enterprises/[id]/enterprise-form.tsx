@@ -126,7 +126,7 @@ export const EnterpriseForm = ({
             handleBanner={setBanner}
             id="banner"
             text="Banner da Página"
-            desc='A imagem selecionada será utilizada como banner da página "/empreendimentos/<id>"'
+            desc='(1920x1080) A imagem selecionada será utilizada como banner da página "/empreendimentos/<id>"'
           />
           <Banner
             disabled={loading}
@@ -134,7 +134,7 @@ export const EnterpriseForm = ({
             handleBanner={setBannerEmphasis}
             id="banner_emphasis"
             text="Banner Destaque"
-            desc="A imagem selecionada será utilizada como banner para os cards do empreendimento no site"
+            desc="(720x1080) A imagem selecionada será utilizada como banner para os cards do empreendimento no site"
           />
         </div>
 

@@ -46,7 +46,8 @@ export function CardImageDropzone<T>({
       <CardHeader>
         <CardTitle>{children}</CardTitle>
         <CardDescription>
-          clique ou arraste os arquivos para seleciona-los.
+          clique ou arraste os arquivos para seleciona-los. <br />
+          {accept?.includes('svg') ? '' : '(1920x1080)'}
         </CardDescription>
         <DropzoneInput
           id={id}
