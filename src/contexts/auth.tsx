@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { type User as SBUser, type Session } from '@supabase/supabase-js';
 import { supabase } from 'services/supabase';
 import cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 type User = { id: string; email: string };
 type AuthContextProps = {
@@ -17,6 +18,7 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: BTypes.FCChildren) => {
+  const router = useRouter();
   const [user, setUser] = useState<AuthContextProps['user']>(null);
   const [loading, setLoading] = useState<AuthContextProps['loading']>(false);
 
@@ -36,6 +38,7 @@ export const AuthProvider = ({ children }: BTypes.FCChildren) => {
     }
     handleSession(null);
     setUser(null);
+    router.push('/admin');
   }
 
   const signIn: AuthContextProps['signIn'] = async (email, password) => {

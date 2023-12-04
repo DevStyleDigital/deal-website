@@ -53,7 +53,6 @@ export const Differentials = ({
             },
             [[], []] as [{ id: string; desc: string }[], string[]],
           );
-
           let err = null;
 
           if (differentialsRemove.length)
