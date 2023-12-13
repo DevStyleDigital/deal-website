@@ -124,14 +124,16 @@ export const EnterprisesSelect = ({
                 </span>
               )}
 
-              <Image
-                src={enterprise.banner_emphasis.url}
-                alt={enterprise.banner_emphasis?.label || ''}
-                aria-hidden
-                width={1036}
-                height={1284}
-                className="w-64 h-80 object-cover object-center"
-              />
+              {!!enterprise.banner_emphasis.url && (
+                <Image
+                  src={enterprise.banner_emphasis.url}
+                  alt={enterprise.banner_emphasis?.label || ''}
+                  aria-hidden
+                  width={1036}
+                  height={1284}
+                  className="w-64 h-80 object-cover object-center"
+                />
+              )}
               <p>{enterprise.name}</p>
             </div>
           </SwiperSlide>

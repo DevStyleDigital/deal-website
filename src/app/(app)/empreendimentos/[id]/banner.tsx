@@ -37,14 +37,16 @@ export const Banner = ({
 }) => {
   return (
     <div className="relative h-[calc(720px-10rem)]">
-      <Image
-        alt={alt || ''}
-        src={src}
-        width={1920}
-        height={1080}
-        priority
-        className="h-full object-cover object-center"
-      />
+      {!!src && (
+        <Image
+          alt={alt || ''}
+          src={src}
+          width={1920}
+          height={1080}
+          priority
+          className="h-full object-cover object-center"
+        />
+      )}
 
       <div className="absolute w-full h-full max-w-7xl left-1/2 -translate-x-1/2 -top-20">
         <div className="absolute flex flex-col space-y-2 top-1/2 mx-8 w-fit max-w-[460px] h-fit shadow-[0px_4px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl p-12 text-white">

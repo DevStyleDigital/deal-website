@@ -35,14 +35,16 @@ export const Plans = ({ plans }: { plans: Enterprise['plans'] }) => {
           </ul>
         </div>
         <div>
-          <Image
-            alt={plans[plan]?.label || ''}
-            src={plans[plan].url}
-            width={2860}
-            height={1080}
-            priority
-            className="w-full h-auto object-cover object-center"
-          />
+          {!!plans[plan].url && (
+            <Image
+              alt={plans[plan]?.label || ''}
+              src={plans[plan].url}
+              width={2860}
+              height={1080}
+              priority
+              className="w-full h-auto object-cover object-center"
+            />
+          )}
         </div>
       </div>
     </section>

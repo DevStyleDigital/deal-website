@@ -20,14 +20,16 @@ export const EnterpriseCard = ({
     <div
       className={cn('relative max-h-[680px] w-full h-full overflow-hidden', className)}
     >
-      <Image
-        src={enterprise.banner_emphasis.url}
-        alt={enterprise.banner_emphasis?.label || ''}
-        aria-hidden
-        width={1036}
-        height={1284}
-        className="w-full h-[680px] object-cover object-center group-hover:scale-110 transition-all"
-      />
+      {!!enterprise.banner_emphasis.url && (
+        <Image
+          src={enterprise.banner_emphasis.url}
+          alt={enterprise.banner_emphasis?.label || ''}
+          aria-hidden
+          width={1036}
+          height={1284}
+          className="w-full h-[680px] object-cover object-center group-hover:scale-110 transition-all"
+        />
+      )}
       <div className="absolute bg-gradient-to-t h-1/2 from-blue from-15% z-10 bottom-0 left-0 w-full p-8 flex flex-col justify-end">
         <h1 className="text-3xl text-white">
           <span className="block truncate">{enterprise.name}</span>

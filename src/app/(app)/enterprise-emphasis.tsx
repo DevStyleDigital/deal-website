@@ -22,14 +22,16 @@ export const EnterpriseEmphasis = ({
         className="border-gold border-r-[1px] border-t-[1px] w-20 h-20 absolute top-0 right-4"
       />
       <div className="w-full max-xl:relative">
-        <Image
-          alt={enterpriseEmphasis.banner_emphasis?.label || ''}
-          src={enterpriseEmphasis.banner_emphasis.url}
-          width={2860}
-          height={1080}
-          priority
-          className="w-full h-auto max-h-[500px] object-cover object-center"
-        />
+        {!!enterpriseEmphasis.banner_emphasis.url && (
+          <Image
+            alt={enterpriseEmphasis.banner_emphasis?.label || ''}
+            src={enterpriseEmphasis.banner_emphasis.url}
+            width={2860}
+            height={1080}
+            priority
+            className="w-full h-auto max-h-[500px] object-cover object-center"
+          />
+        )}
         <span
           aria-hidden
           className="border-gold border-l-[1px] border-b-[1px] w-20 h-20 absolute -left-4 -bottom-4 xl:left-4 xl:bottom-0"

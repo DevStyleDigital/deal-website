@@ -50,14 +50,16 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
       </Banner>
 
       <section className="flex max-w-7xl mx-auto md:space-x-20 xl:space-x-32 px-8 pt-16 justify-between max-md:flex-col-reverse">
-        <Image
-          alt={enterprise.banner_emphasis?.label || ''}
-          src={enterprise.banner_emphasis.url}
-          width={2860}
-          height={1080}
-          priority
-          className="md:max-w-sm w-full h-96 max-md:mt-8 md:h-auto object-cover object-center"
-        />
+        {!!enterprise.banner_emphasis.url && (
+          <Image
+            alt={enterprise.banner_emphasis?.label || ''}
+            src={enterprise.banner_emphasis.url}
+            width={2860}
+            height={1080}
+            priority
+            className="md:max-w-sm w-full h-96 max-md:mt-8 md:h-auto object-cover object-center"
+          />
+        )}
         <div className="space-y-8">
           <div className="space-y-3">
             <div className="flex flex-col text-gold">
@@ -78,14 +80,16 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
             <ul className="flex w-full flex-col space-y-5">
               {enterprise.additional.map(({ label, id, url }) => (
                 <li key={id} className="flex items-center text-lg space-x-5">
-                  <Image
-                    alt=""
-                    src={url}
-                    aria-hidden
-                    width={100}
-                    height={100}
-                    className="w-6 h-6"
-                  />
+                  {!!url && (
+                    <Image
+                      alt=""
+                      src={url}
+                      aria-hidden
+                      width={100}
+                      height={100}
+                      className="w-6 h-6"
+                    />
+                  )}
                   <p>{label}</p>
                 </li>
               ))}
@@ -127,14 +131,16 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
         <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-y-10 justify-items-center">
           {enterprise.differential.map(({ label, id, url }) => (
             <li key={id} className="flex flex-col items-center w-[130px] space-y-5">
-              <Image
-                alt=""
-                src={url}
-                aria-hidden
-                width={100}
-                height={100}
-                className="w-16 h-16"
-              />
+              {!!url && (
+                <Image
+                  alt=""
+                  src={url}
+                  aria-hidden
+                  width={100}
+                  height={100}
+                  className="w-16 h-16"
+                />
+              )}
               <p className="text-center">{label}</p>
             </li>
           ))}

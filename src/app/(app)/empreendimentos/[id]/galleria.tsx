@@ -49,14 +49,16 @@ export const Galleria = ({ galleria }: { galleria: Enterprise['galleria'] }) => 
     >
       {galleria.map((image) => (
         <SwiperSlide key={image.id}>
-          <Image
-            src={image.url}
-            alt={image?.label || ''}
-            width={2860}
-            height={1080}
-            priority
-            className="min-h-[280px] sm:min-w-[500px] max-h-[4000px] min-[1060px]:max-h-[280px] min-[1060px]:max-w-[500px] object-cover"
-          />
+          {!!image.url && (
+            <Image
+              src={image.url}
+              alt={image?.label || ''}
+              width={2860}
+              height={1080}
+              priority
+              className="min-h-[280px] sm:min-w-[500px] max-h-[4000px] min-[1060px]:max-h-[280px] min-[1060px]:max-w-[500px] object-cover"
+            />
+          )}
         </SwiperSlide>
       ))}
     </Swiper>
