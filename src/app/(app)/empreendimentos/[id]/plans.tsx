@@ -35,7 +35,7 @@ export const Plans = ({ plans }: { plans: Enterprise['plans'] }) => {
           </ul>
         </div>
         <div>
-          {!!plans[plan].url && (
+          {!!plans[plan]?.url && (
             <Image
               alt={plans[plan]?.label || ''}
               src={plans[plan].url}

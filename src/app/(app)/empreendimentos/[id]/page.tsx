@@ -22,7 +22,7 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
 
   return (
     <>
-      <Banner alt={enterprise.banner?.label || ''} src={enterprise.banner.url}>
+      <Banner alt={enterprise.banner?.label || ''} src={enterprise.banner?.url || ''}>
         {enterprise.status !== 'none' && (
           <span className="uppercase text-sm bg-white text-gold px-4 tracking-widest py-[2px] w-fit">
             {enterprise.status === 'new'
