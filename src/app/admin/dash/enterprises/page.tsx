@@ -5,6 +5,8 @@ import { EnterpriseCard } from './enterprise-card';
 import Link from 'next/link';
 import { getPartialOfEnterprises } from 'utils/enterprises-func';
 
+export const dynamic = 'force-dynamic';
+
 const Enterprises: BTypes.NPage<{}, true> = async () => {
   const enterprises = await getPartialOfEnterprises();
 

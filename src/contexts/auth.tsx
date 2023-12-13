@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: BTypes.FCChildren) => {
     }
     handleSession(null);
     setUser(null);
-    router.push('/admin');
+    router.push('/');
   }
 
   const signIn: AuthContextProps['signIn'] = async (email, password) => {

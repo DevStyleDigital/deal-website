@@ -6,6 +6,7 @@ import { supabase } from 'services/supabase';
 import { getEnterpriseById } from 'utils/enterprises-func';
 
 export const dynamicParams = false;
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
   const enterprises = await supabase.from('enterprise').select('id');

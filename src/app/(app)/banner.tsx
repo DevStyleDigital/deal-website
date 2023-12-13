@@ -29,14 +29,14 @@ export const Banner = ({ banner }: { banner: keyof typeof banners }) => {
   const bannerSelected = banners[banner];
 
   return (
-    <div className="relative h-[calc(720px-10rem)]">
+    <div className="relative h-[80vh] max-h-[920px] w-full">
       <Image
         alt=""
         src={`/banners/${banner}.webp`}
         width={1920}
         height={1080}
         priority
-        className="h-full object-cover object-center"
+        className="h-full w-full object-cover object-center"
       />
 
       <div className="absolute w-full h-full max-w-7xl left-1/2 -translate-x-1/2 -top-20">

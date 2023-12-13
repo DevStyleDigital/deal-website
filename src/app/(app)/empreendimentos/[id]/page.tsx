@@ -9,6 +9,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from 'components/ui/button';
 import { Plans } from './plans';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const enterprises = await supabase.from('enterprise').select('id');
@@ -17,6 +18,7 @@ export async function generateStaticParams() {
 
 const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ params }) => {
   const enterprise = await getEnterpriseById(params.id);
+  if (!enterprise) return notFound();
 
   return (
     <>
