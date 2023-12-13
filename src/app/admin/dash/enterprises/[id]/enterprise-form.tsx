@@ -112,8 +112,8 @@ export const EnterpriseForm = ({
               })
           )
             .then(() => {
-              router.push('/admin/dash/enterprises');
               router.refresh();
+              router.push('/admin/dash/enterprises');
             })
             .finally(() => setLoading(false));
         })}

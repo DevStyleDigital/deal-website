@@ -3,6 +3,8 @@ import { EnterprisesSelect } from './enterprises-select';
 import { supabase } from 'services/supabase';
 import { Differentials } from './differentials';
 
+const dynamic = 'force-dynamic';
+
 const Dash: BTypes.NPage<{}, true> = async () => {
   const enterprises = await getPartialOfEnterprises();
   const differentials = await supabase
