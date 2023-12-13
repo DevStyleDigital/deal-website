@@ -23,7 +23,7 @@ export const EnterpriseEmphasis = ({
       />
       <div className="w-full max-xl:relative">
         <Image
-          alt={enterpriseEmphasis.banner_emphasis.label}
+          alt={enterpriseEmphasis.banner_emphasis?.label || ''}
           src={enterpriseEmphasis.banner_emphasis.url}
           width={2860}
           height={1080}

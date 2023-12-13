@@ -36,7 +36,7 @@ export const Plans = ({ plans }: { plans: Enterprise['plans'] }) => {
         </div>
         <div>
           <Image
-            alt={plans[plan].label}
+            alt={plans[plan]?.label || ''}
             src={plans[plan].url}
             width={2860}
             height={1080}

@@ -22,7 +22,7 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
 
   return (
     <>
-      <Banner alt={enterprise.banner.label} src={enterprise.banner.url}>
+      <Banner alt={enterprise.banner?.label || ''} src={enterprise.banner.url}>
         {enterprise.status !== 'none' && (
           <span className="uppercase text-sm bg-white text-gold px-4 tracking-widest py-[2px] w-fit">
             {enterprise.status === 'new'
@@ -51,7 +51,7 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
 
       <section className="flex max-w-7xl mx-auto md:space-x-20 xl:space-x-32 px-8 pt-16 justify-between max-md:flex-col-reverse">
         <Image
-          alt={enterprise.banner_emphasis.label}
+          alt={enterprise.banner_emphasis?.label || ''}
           src={enterprise.banner_emphasis.url}
           width={2860}
           height={1080}

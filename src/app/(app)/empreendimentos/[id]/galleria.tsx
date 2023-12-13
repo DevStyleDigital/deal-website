@@ -51,7 +51,7 @@ export const Galleria = ({ galleria }: { galleria: Enterprise['galleria'] }) => 
         <SwiperSlide key={image.id}>
           <Image
             src={image.url}
-            alt={image.label}
+            alt={image?.label || ''}
             width={2860}
             height={1080}
             priority

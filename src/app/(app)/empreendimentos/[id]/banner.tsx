@@ -38,7 +38,7 @@ export const Banner = ({
   return (
     <div className="relative h-[calc(720px-10rem)]">
       <Image
-        alt={alt}
+        alt={alt || ''}
         src={src}
         width={1920}
         height={1080}

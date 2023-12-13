@@ -22,7 +22,7 @@ export const EnterpriseCard = ({
     >
       <Image
         src={enterprise.banner_emphasis.url}
-        alt={enterprise.banner_emphasis.label}
+        alt={enterprise.banner_emphasis?.label || ''}
         aria-hidden
         width={1036}
         height={1284}
