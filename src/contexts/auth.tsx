@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { type User as SBUser, type Session } from '@supabase/supabase-js';
 import { supabase } from 'services/supabase';
 import cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 type User = { id: string; email: string };
 type AuthContextProps = {
@@ -19,6 +19,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: BTypes.FCChildren) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [user, setUser] = useState<AuthContextProps['user']>(null);
   const [loading, setLoading] = useState<AuthContextProps['loading']>(false);
 
@@ -38,7 +39,8 @@ export const AuthProvider = ({ children }: BTypes.FCChildren) => {
     }
     handleSession(null);
     setUser(null);
-    router.push('/');
+    if (pathname.includes('/admin')) router.push('/admin');
+    else router.push('/');
   }
 
   const signIn: AuthContextProps['signIn'] = async (email, password) => {
