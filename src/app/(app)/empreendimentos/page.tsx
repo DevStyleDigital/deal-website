@@ -1,9 +1,13 @@
 import { EnterpriseCard } from 'components/enterprise-card';
 import { getPartialOfEnterprises } from 'utils/enterprises-func';
 import { Banner } from '../banner';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
 const Enterprises = async () => {
-  const enterprises = await getPartialOfEnterprises();
+  const cookiesStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+  const enterprises = await getPartialOfEnterprises(supabase);
 
   return (
     <>

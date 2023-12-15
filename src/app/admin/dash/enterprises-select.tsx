@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { Chevron } from 'assets/chevron';
+import { useAuth } from 'contexts/auth';
 import { Check } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { supabase } from 'services/supabase';
 import { Navigation, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { type EnterprisePartial } from 'types/enterprise';
@@ -24,6 +24,7 @@ export const EnterprisesSelect = ({
   defaultValue: string;
   enterprises: EnterprisePartial[];
 }) => {
+  const { supabase } = useAuth();
   const [defaultEnterpriseSelected, setDefaultEnterpriseSelected] =
     useState(defaultValue);
   const [enterpriseSelected, setEnterpriseSelected] = useState<string | undefined>();
@@ -93,10 +94,7 @@ export const EnterprisesSelect = ({
         }}
         className="cursor-grab active:cursor-grabbing"
       >
-        {moveToFront(
-          enterprises,
-          enterprises.findIndex(({ id }) => id === defaultEnterpriseSelected),
-        ).map((enterprise) => (
+        {enterprises.map((enterprise) => (
           <SwiperSlide
             key={enterprise.id}
             role="button"

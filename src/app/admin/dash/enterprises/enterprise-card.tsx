@@ -7,6 +7,7 @@ import { deleteEnterprise } from 'utils/enterprises-func';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuth } from 'contexts/auth';
 
 interface EnterpriseCardProps {
   enterprise: EnterprisePartial;
@@ -18,7 +19,9 @@ export const EnterpriseCard = ({
   aspectRatio = 'portrait',
   ...props
 }: EnterpriseCardProps) => {
+  const { supabase } = useAuth();
   const router = useRouter();
+
   return (
     <div className="relative" {...props}>
       <div className="flex absolute z-10 w-full bg-blue/90 space-x-4 p-2 justify-between">
@@ -35,7 +38,7 @@ export const EnterpriseCard = ({
           <button
             className="text-red-500 p-4 space-x-4 flex items-center w-full hover:bg-blue rounded-sm"
             onClick={() => {
-              deleteEnterprise(enterprise.id)
+              deleteEnterprise(enterprise.id, supabase)
                 .then(() => {
                   router.refresh();
                   toast.success('Empreendimento deletado com sucesso!');

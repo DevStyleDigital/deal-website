@@ -2,21 +2,19 @@ import { notFound } from 'next/navigation';
 import { EnterpriseForm } from './enterprise-form';
 import { MoveLeft } from 'lucide-react';
 import Link from 'next/link';
-import { supabase } from 'services/supabase';
 import { getEnterpriseById } from 'utils/enterprises-func';
+import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
-export const dynamicParams = false;
 export const dynamic = 'force-dynamic';
 
-export async function generateStaticParams() {
-  const enterprises = await supabase.from('enterprise').select('id');
-  return [{ id: 'create' }, ...(enterprises.data || [])];
-}
-
 const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ params }) => {
+  const cookiesStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+
   let enterprise = undefined;
 
-  if (params.id !== 'create') enterprise = await getEnterpriseById(params.id);
+  if (params.id !== 'create') enterprise = await getEnterpriseById(params.id, supabase);
   if (params.id !== 'create' && !enterprise) return notFound();
 
   const states = await fetch('https://brasilapi.com.br/api/ibge/uf/v1')

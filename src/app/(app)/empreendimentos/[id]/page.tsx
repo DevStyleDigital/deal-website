@@ -1,4 +1,3 @@
-import { supabase } from 'services/supabase';
 import { getEnterpriseById } from 'utils/enterprises-func';
 import { Banner } from './banner';
 import { Galleria } from './galleria';
@@ -10,14 +9,15 @@ import Link from 'next/link';
 import { Button } from 'components/ui/button';
 import { Plans } from './plans';
 import { notFound } from 'next/navigation';
-
-export async function generateStaticParams() {
-  const enterprises = await supabase.from('enterprise').select('id');
-  return [...(enterprises.data || [])];
-}
+import {
+  createServerComponentClient,
+} from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
 const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ params }) => {
-  const enterprise = await getEnterpriseById(params.id);
+  const cookiesStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+  const enterprise = await getEnterpriseById(params.id, supabase);
   if (!enterprise) return notFound();
 
   return (

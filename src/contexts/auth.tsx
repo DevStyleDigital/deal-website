@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { type User as SBUser, type Session } from '@supabase/supabase-js';
-import { supabase } from 'services/supabase';
-import cookies from 'js-cookie';
+import { SupabaseClient, type User as SBUser, type Session } from '@supabase/supabase-js';
 import { useRouter, usePathname } from 'next/navigation';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 type User = { id: string; email: string };
 type AuthContextProps = {
@@ -12,32 +11,24 @@ type AuthContextProps = {
   signOut: () => Promise<void>;
   user: User | null;
   loading: boolean;
+  supabase: SupabaseClient<any, 'public', any>;
 };
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: BTypes.FCChildren) => {
+  const supabase = createClientComponentClient();
   const router = useRouter();
   const pathname = usePathname();
   const [user, setUser] = useState<AuthContextProps['user']>(null);
   const [loading, setLoading] = useState<AuthContextProps['loading']>(false);
 
-  function handleSession(session: Session | null) {
-    if (!session?.access_token) return cookies.remove('__AUTH');
-    cookies.set('__AUTH', session.access_token, {
-      expires: session.expires_in,
-      path: '/',
-    });
-  }
-
   function handleUser(data: { session: Session | null; user: SBUser | null } | null) {
     if (data?.user && data?.session) {
-      handleSession(data.session);
       setUser({ email: data.user.email!, id: data.user.id });
       return;
     }
-    handleSession(null);
     setUser(null);
     if (pathname.includes('/admin')) router.push('/admin');
     else router.push('/');
@@ -70,7 +61,10 @@ export const AuthProvider = ({ children }: BTypes.FCChildren) => {
     );
   }, []);
 
-  const value = useMemo(() => ({ user, loading, signIn, signOut }), [user, loading]);
+  const value = useMemo(
+    () => ({ user, loading, signIn, signOut, supabase }),
+    [user, loading, supabase],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

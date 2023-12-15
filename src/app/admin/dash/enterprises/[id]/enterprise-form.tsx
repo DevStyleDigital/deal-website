@@ -11,12 +11,14 @@ import { Banner } from './banner';
 import { EnterpriseInfo } from './enterprise-info';
 import { EnterpriseLocation } from './enterprise-location';
 import { EnterpriseDatasheet } from './enterprise-datasheet';
-import { onSubmitCreate } from './handle-submit-create';
-import { onSubmitEdit } from './handle-submit-edit';
 import { type Datasheet, type Enterprise } from 'types/enterprise';
 import { cn } from 'utils/cn';
 import { useRouter } from 'next/navigation';
 import { Checkbox } from 'components/ui/checkbox';
+import { useAuth } from 'contexts/auth';
+import { v4 as uuid } from 'uuid';
+import { deleteEnterprise } from 'utils/enterprises-func';
+import { toast } from 'react-toastify';
 
 const FormSchema = z.object({
   name: z.string(),
@@ -52,6 +54,7 @@ export const EnterpriseForm = ({
   id: string;
   enterprise?: Enterprise;
 }) => {
+  const { supabase } = useAuth();
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -75,6 +78,41 @@ export const EnterpriseForm = ({
       : [{ id: Date.now().toString(), label: '', value: '', eid: '' }],
   );
 
+  async function uploadFile(eid: string, file: File, name: string) {
+    const fileExt = file.name.split('.').pop();
+    const filePath = `${name}.${fileExt}`;
+
+    await supabase.storage.from(eid).upload(filePath, file);
+
+    return supabase.storage.from(eid).getPublicUrl(filePath).data.publicUrl;
+  }
+
+  async function handleImages(images: DropzoneFields[], key: string) {
+    const imagesUploaded = await Promise.all(
+      (images || []).map(async ({ file, ...item }) =>
+        typeof file !== 'string'
+          ? {
+              url: await uploadFile(`enterprise-${id}`, file, key + '/' + item.id),
+              eid: id,
+              ...item,
+            }
+          : { url: file, ...item },
+      ),
+    );
+    const imagesIds = imagesUploaded.map((item) => item.id);
+    if (enterprise?.[key as 'galleria']?.length)
+      await supabase
+        .from(key)
+        .delete()
+        .in(
+          'id',
+          enterprise[key as 'galleria']
+            .map((item) => item.id)
+            .filter((item_id) => !imagesIds.includes(item_id)),
+        );
+    await supabase.from(key).upsert(imagesUploaded);
+  }
+
   const form = useForm<FormSchemaProps>({
     resolver: zodResolver(FormSchema as any),
     defaultValues: enterprise,
@@ -87,35 +125,65 @@ export const EnterpriseForm = ({
       </span>
 
       <form
-        onSubmit={form.handleSubmit((data) => {
+        onSubmit={form.handleSubmit(async (data) => {
           setLoading(true);
+          const id = enterprise?.id || uuid();
+          try {
+            if (!enterprise)
+              await supabase.storage.createBucket(`enterprise-${id}`, { public: true });
 
-          (id === 'create'
-            ? onSubmitCreate(data, {
-                additionalInfo,
-                banner,
-                bannerEmphasis,
-                datasheet,
-                differential,
-                galleria,
-                plans,
-              })
-            : onSubmitEdit(data, {
-                additionalInfo,
-                banner,
-                bannerEmphasis,
-                datasheet,
-                differential,
-                galleria,
-                plans,
-                enterprise,
-              })
-          )
-            .then(() => {
-              router.refresh();
-              router.push('/admin/dash/enterprises');
-            })
-            .finally(() => setLoading(false));
+            const banner_id = new Date().getTime().toString();
+            const banner_emphasis_id = new Date().getTime().toString() + '-emphasis';
+
+            await supabase.from('enterprises').upsert({
+              ...data,
+              id,
+              datasheet,
+              banner: banner
+                ? {
+                    url: await uploadFile(`enterprise-${id}`, banner, banner_id),
+                    eid: id,
+                    id: banner_id,
+                    label: '',
+                  }
+                : undefined,
+              banner_emphasis: bannerEmphasis
+                ? {
+                    url: await uploadFile(
+                      `enterprise-${id}`,
+                      bannerEmphasis,
+                      banner_emphasis_id,
+                    ),
+                    eid: id,
+                    id: banner_emphasis_id,
+                    label: '',
+                  }
+                : undefined,
+            });
+
+            additionalInfo &&
+              (await handleImages(additionalInfo as DropzoneFields[], 'additional'));
+            differential &&
+              (await handleImages(differential as DropzoneFields[], 'differential'));
+            galleria && (await handleImages(galleria as DropzoneFields[], 'galleria'));
+            plans && (await handleImages(plans as DropzoneFields[], 'plans'));
+
+            setLoading(false);
+            toast.success(
+              'Empreendimento ' +
+                (!enterprise ? 'cadastrado' : 'atualizado') +
+                ' com sucesso!',
+            );
+            router.refresh();
+            // router.push('/admin/dash/enterprises');
+          } catch {
+            toast.error(
+              'Ocorreu um erro ao ' +
+                (!enterprise ? 'cadastrar' : 'atualizar') +
+                ' o empreendimento!',
+            );
+            if (!enterprise) await deleteEnterprise(id, supabase);
+          }
         })}
         className="space-y-6 pb-8 pt-2 flex flex-col w-full mx-auto max-w-7xl"
       >

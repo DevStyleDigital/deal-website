@@ -12,8 +12,10 @@ export const UploadImageInput = ({
   disabled,
   progress,
   handleFile,
+  accept,
 }: {
   id: string;
+  accept?: string;
   required?: boolean;
   file: File | string | null;
   progress?: number;
@@ -66,7 +68,7 @@ export const UploadImageInput = ({
       <input
         type="file"
         id={id}
-        accept="image/*"
+        accept={accept ? accept : 'image/*'}
         className="sr-only"
         required={required}
         disabled={!!progress}

@@ -4,11 +4,15 @@ import { PlusCircle } from 'lucide-react';
 import { EnterpriseCard } from './enterprise-card';
 import Link from 'next/link';
 import { getPartialOfEnterprises } from 'utils/enterprises-func';
+import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export const dynamic = 'force-dynamic';
 
 const Enterprises: BTypes.NPage<{}, true> = async () => {
-  const enterprises = await getPartialOfEnterprises();
+  const cookiesStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+  const enterprises = await getPartialOfEnterprises(supabase);
 
   return (
     <>

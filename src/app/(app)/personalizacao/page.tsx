@@ -3,17 +3,21 @@ import { Banner } from '../banner';
 import { Button } from 'components/ui/button';
 import Link from 'next/link';
 import { TalkUs } from 'components/talk-us';
-import { supabase } from 'services/supabase';
+import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export const metadata: Metadata = {
   title: 'Deal | Sobre',
 };
 
 const Personalization = async () => {
+  const cookiesStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+
   const differentials = await supabase
     .from('section_differentials')
     .select('*')
-    .then(({ data, error }) => (data ? data : undefined));
+    .then(({ data }) => (data ? data : undefined));
 
   return (
     <>

@@ -1,12 +1,17 @@
 import { getPartialOfEnterprises } from 'utils/enterprises-func';
 import { EnterprisesSelect } from './enterprises-select';
-import { supabase } from 'services/supabase';
 import { Differentials } from './differentials';
+import { cookies } from 'next/headers';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
-const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 const Dash: BTypes.NPage<{}, true> = async () => {
-  const enterprises = await getPartialOfEnterprises();
+  const cookiesStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+
+  const enterprises = await getPartialOfEnterprises(supabase);
+
   const differentials = await supabase
     .from('section_differentials')
     .select('*')

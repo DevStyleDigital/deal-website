@@ -1,11 +1,11 @@
 'use client';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from 'components/ui/button';
 import { Label } from 'components/ui/label';
 import { Textarea } from 'components/ui/textarea';
 import { PlusCircle, Trash } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { supabase } from 'services/supabase';
 import { handleDeleteItem } from 'utils/handle-delete-item';
 import { v4 as uuid } from 'uuid';
 
@@ -14,6 +14,7 @@ export const Differentials = ({
 }: {
   differentials?: { id: string; desc: string }[];
 }) => {
+  const supabase = createClientComponentClient();
   const [loading, setLoading] = useState(false);
   const [differentials, setDifferentials] = useState<{ id: string; desc: string }[]>(
     differentialsDb && differentialsDb.length
@@ -27,32 +28,11 @@ export const Differentials = ({
         ev.preventDefault();
         try {
           setLoading(true);
-          const [differentialsFormatted, differentialsRemove] = differentials.reduce(
-            (acc, item) => {
-              const defaultDataIds = differentialsDb?.map(({ id }) => id) || [];
-              const defaultData = differentialsDb?.find(({ id }) => item.id === id);
-              const dataModified = Object.entries(item)
-                .filter(([k, v]) =>
-                  k === 'id' ? false : defaultData?.[k as keyof typeof defaultData] !== v,
-                )
-                .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {}) as Record<
-                string,
-                string
-              >;
-
-              if (defaultDataIds.includes(item.id) && Object.keys(dataModified).length)
-                acc[0].push({ ...dataModified, id: item.id } as any);
-              if (!defaultDataIds.includes(item.id)) acc[0].push(item);
-
-              const differentialsIds = differentials?.map(({ id }) => id) || [];
-              const removedItems = defaultDataIds.filter(
-                (id) => !differentialsIds.includes(id),
-              );
-              acc[1] = removedItems;
-              return acc;
-            },
-            [[], []] as [{ id: string; desc: string }[], string[]],
-          );
+          const differentialsRemove = differentials.reduce((acc, item) => {
+            const defaultDataIds = differentialsDb?.map(({ id }) => id) || [];
+            defaultDataIds.findIndex((id) => id === item.id) === -1 && acc.push(item.id);
+            return acc;
+          }, [] as string[]);
           let err = null;
 
           if (differentialsRemove.length)
@@ -65,10 +45,10 @@ export const Differentials = ({
               });
 
           if (err) throw 'err';
-          if (differentialsFormatted.length)
+          if (differentials.length)
             await supabase
               .from('section_differentials')
-              .upsert(differentialsFormatted)
+              .upsert(differentials)
               .then((res) => {
                 err = res.error;
               });
