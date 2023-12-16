@@ -126,12 +126,12 @@ export function CardImageDropzone<T>({
                       {typeof (image as DropzoneFields).file === 'string'
                         ? 'less than 25Mb'
                         : fileSizeType === 'Mb'
-                        ? `${(
-                            ((image as DropzoneFields).file as File).size / 1000000
-                          ).toFixed(2)}Mb`
-                        : `${(
-                            ((image as DropzoneFields).file as File).size / 1000
-                          ).toFixed(2)}Kb`}
+                          ? `${(
+                              ((image as DropzoneFields).file as File).size / 1000000
+                            ).toFixed(2)}Mb`
+                          : `${(
+                              ((image as DropzoneFields).file as File).size / 1000
+                            ).toFixed(2)}Kb`}
                     </p>
                   </div>
                   <div className="self-center">

@@ -9,9 +9,7 @@ import Link from 'next/link';
 import { Button } from 'components/ui/button';
 import { Plans } from './plans';
 import { notFound } from 'next/navigation';
-import {
-  createServerComponentClient,
-} from '@supabase/auth-helpers-nextjs';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ params }) => {
@@ -28,8 +26,8 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
             {enterprise.status === 'new'
               ? 'Lançamento'
               : enterprise.status === 'close'
-              ? '100% Vendido'
-              : ''}
+                ? '100% Vendido'
+                : ''}
           </span>
         )}
         <div className="flex flex-col">
@@ -71,8 +69,8 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
                 {enterprise.status === 'new'
                   ? 'Lançamento'
                   : enterprise.status === 'close'
-                  ? '100% Vendido'
-                  : ''}
+                    ? '100% Vendido'
+                    : ''}
               </span>
             )}
           </div>
