@@ -92,7 +92,7 @@ export const EnterpriseForm = ({
       (images || []).map(async ({ file, ...item }) =>
         typeof file !== 'string'
           ? {
-              url: await uploadFile(`enterprise-${id}`, file, key + '/' + item.id),
+              url: await uploadFile(`enterprise-${id}`, file, `${key}/${item.id}`),
               eid: id,
               ...item,
             }
@@ -132,18 +132,15 @@ export const EnterpriseForm = ({
             if (!enterprise)
               await supabase.storage.createBucket(`enterprise-${id}`, { public: true });
 
-            const banner_id = new Date().getTime().toString();
-            const banner_emphasis_id = new Date().getTime().toString() + '-emphasis';
-
             await supabase.from('enterprises').upsert({
               ...data,
               id,
               datasheet,
               banner: banner
                 ? {
-                    url: await uploadFile(`enterprise-${id}`, banner, banner_id),
+                    url: await uploadFile(`enterprise-${id}`, banner, 'banner'),
                     eid: id,
-                    id: banner_id,
+                    id: 'banner',
                     label: '',
                   }
                 : undefined,
@@ -152,10 +149,10 @@ export const EnterpriseForm = ({
                     url: await uploadFile(
                       `enterprise-${id}`,
                       bannerEmphasis,
-                      banner_emphasis_id,
+                      'banner-emphasis',
                     ),
                     eid: id,
-                    id: banner_emphasis_id,
+                    id: 'banner-emphasis',
                     label: '',
                   }
                 : undefined,
@@ -170,17 +167,15 @@ export const EnterpriseForm = ({
 
             setLoading(false);
             toast.success(
-              'Empreendimento ' +
-                (!enterprise ? 'cadastrado' : 'atualizado') +
-                ' com sucesso!',
+              `Empreendimento ${!enterprise ? 'cadastrado' : 'atualizado'} com sucesso!`,
             );
             router.refresh();
-            // router.push('/admin/dash/enterprises');
+            router.push('/admin/dash/enterprises');
           } catch {
             toast.error(
-              'Ocorreu um erro ao ' +
-                (!enterprise ? 'cadastrar' : 'atualizar') +
-                ' o empreendimento!',
+              `Ocorreu um erro ao ${
+                !enterprise ? 'cadastrar' : 'atualizar'
+              } o empreendimento!`,
             );
             if (!enterprise) await deleteEnterprise(id, supabase);
           }
