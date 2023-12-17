@@ -95,15 +95,21 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
             <p className="w-full">{enterprise.desc}</p>
           </div>
           <nav className="grid lg:grid-cols-2 w-full gap-x-12 gap-y-3 grid-cols-1">
-            <Button asChild className="!justify-start px-10" variant="gold">
-              <Link href="#galeria">O Empreendimento</Link>
-            </Button>
-            <Button asChild className="!justify-start px-10" variant="gold">
-              <Link href="#plantas">Plantas</Link>
-            </Button>
-            <Button asChild className="!justify-start px-10" variant="gold">
-              <Link href="#diferenciais">Diferenciais</Link>
-            </Button>
+            {enterprise.galleria?.length ? (
+              <Button asChild className="!justify-start px-10" variant="gold">
+                <Link href="#galeria">O Empreendimento</Link>
+              </Button>
+            ) : null}
+            {enterprise.plans?.length ? (
+              <Button asChild className="!justify-start px-10" variant="gold">
+                <Link href="#plantas">Plantas</Link>
+              </Button>
+            ) : null}
+            {enterprise.differential?.length ? (
+              <Button asChild className="!justify-start px-10" variant="gold">
+                <Link href="#diferenciais">Diferenciais</Link>
+              </Button>
+            ) : null}
             <Button asChild className="!justify-start px-10" variant="gold">
               <Link href="#localizacao">Localização</Link>
             </Button>
@@ -117,33 +123,35 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
         </div>
       </section>
 
-      <Galleria galleria={enterprise.galleria} />
+      {enterprise.galleria?.length ? <Galleria galleria={enterprise.galleria} /> : null}
 
-      <Plans plans={enterprise.plans} />
+      {enterprise.plans?.length ? <Plans plans={enterprise.plans} /> : null}
 
-      <section id="diferenciais" className="max-w-7xl mx-auto">
-        <div className="text-gold mb-10">
-          <h1 className="text-2xl text-center">Diferenciais</h1>
-        </div>
+      {enterprise.differential?.length ? (
+        <section id="diferenciais" className="max-w-7xl mx-auto">
+          <div className="text-gold mb-10">
+            <h1 className="text-2xl text-center">Diferenciais</h1>
+          </div>
 
-        <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-y-10 justify-items-center">
-          {enterprise.differential.map(({ label, id, url }) => (
-            <li key={id} className="flex flex-col items-center w-[130px] space-y-5">
-              {!!url && (
-                <Image
-                  alt=""
-                  src={url}
-                  aria-hidden
-                  width={100}
-                  height={100}
-                  className="w-16 h-16"
-                />
-              )}
-              <p className="text-center">{label}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+          <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-y-10 justify-items-center">
+            {enterprise.differential.map(({ label, id, url }) => (
+              <li key={id} className="flex flex-col items-center w-[130px] space-y-5">
+                {!!url && (
+                  <Image
+                    alt=""
+                    src={url}
+                    aria-hidden
+                    width={100}
+                    height={100}
+                    className="w-16 h-16"
+                  />
+                )}
+                <p className="text-center">{label}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <Localization
         address={enterprise.address}

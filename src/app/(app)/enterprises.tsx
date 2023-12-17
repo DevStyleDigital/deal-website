@@ -1,14 +1,12 @@
 'use client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y, Navigation } from 'swiper/modules';
-import Image from 'next/image';
 import { type EnterprisePartial } from 'types/enterprise';
-import Link from 'next/link';
-import { ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { EnterpriseCard } from 'components/enterprise-card';
 
 export const Enterprise = ({ enterprises }: { enterprises: EnterprisePartial[] }) => (
-  <section className="mb-16 relative">
+  <section className="my-16 relative">
     <div className="sm:absolute sm:top-1/2 sm:-translate-y-1/2 w-full flex max-w-[84rem] max-sm:mb-8 justify-center sm:justify-between sm:left-1/2 sm:-translate-x-1/2">
       <div
         className="cursor-pointer opacity-80 hover:opacity-100 transition-opacity"

@@ -1,5 +1,6 @@
 import { CoreAg } from 'assets/core-ag';
 import { Logo } from 'assets/logo';
+import { WhatsApp } from 'assets/whatsapp';
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from 'components/ui/dialog';
 import { Facebook, Instagram, MapPin, Menu, Phone } from 'lucide-react';
 import Link from 'next/link';
@@ -61,37 +62,60 @@ const AppLayout: BTypes.NLPage = ({ children }) => {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  <Link
-                    href="/sobre"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
-                  >
-                    Sobre nós
-                  </Link>
-                  <Link
-                    href="/empreendimentos"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
-                  >
-                    Empreendimentos
-                  </Link>
-                  <Link
-                    href="/personalizacao"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
-                  >
-                    Personalização
-                  </Link>
-                  <Link
-                    href="/contato"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
-                  >
-                    Contato
-                  </Link>
+                  <DialogTrigger asChild>
+                    <Link
+                      href="/sobre"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                    >
+                      Sobre nós
+                    </Link>
+                  </DialogTrigger>
+                  <DialogTrigger asChild>
+                    <Link
+                      href="/empreendimentos"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                    >
+                      Empreendimentos
+                    </Link>
+                  </DialogTrigger>
+                  <DialogTrigger asChild>
+                    <Link
+                      href="/personalizacao"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                    >
+                      Personalização
+                    </Link>
+                  </DialogTrigger>
+                  <DialogTrigger asChild>
+                    <Link
+                      href="/contato"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-blue hover:bg-gray-200 transition-colors"
+                    >
+                      Contato
+                    </Link>
+                  </DialogTrigger>
                 </div>
               </div>
             </div>
           </DialogContent>
         </Dialog>
       </header>
-      <main>{children}</main>
+      <main>
+        {children}
+        <div className="fixed bottom-8 right-8 flex z-[100] rounded-full bg-green-600 hover:scale-105 transition-all">
+          <a
+            href={`https://wa.me/15998179909?text=${encodeURIComponent(
+              'Olá vim do site!',
+            )}`}
+            className="p-4 w-fit"
+            aria-label="WhatsApp"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <WhatsApp className="w-8 h-8 text-white" />
+          </a>
+        </div>
+      </main>
       <footer className="bg-blue text-white py-8 [&_h3]:text-gold">
         <span className="w-full bg-gold h-px mt-2 mb-8 block" />
         <div className="max-w-7xl flex flex-wrap justify-between mx-auto px-8 gap-8">

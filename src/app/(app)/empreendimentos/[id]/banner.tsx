@@ -36,7 +36,7 @@ export const Banner = ({
   alt: string;
 }) => {
   return (
-    <div className="relative h-[calc(720px-10rem)]">
+    <div className="relative h-[80vh] max-h-[920px] w-full">
       {!!src && (
         <Image
           alt={alt || ''}

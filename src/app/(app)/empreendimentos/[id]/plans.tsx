@@ -13,7 +13,7 @@ export const Plans = ({ plans }: { plans: Enterprise['plans'] }) => {
   return (
     <section className="max-w-7xl mx-auto py-16 px-8">
       <div className="text-gold mb-10">
-        <h1 className="text-2xl text-center">Diferenciais</h1>
+        <h1 className="text-2xl text-center">Plantas</h1>
       </div>
 
       <div className="flex max-xl:flex-col">
