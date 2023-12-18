@@ -35,12 +35,13 @@ const About = () => {
             <div className="flex space-x-3">
               <MapPin aria-hidden className="text-blue" />
               <address className="not-italic">
-                Av. Ademar de Barros, 195 <br /> Vila Trujillo, Sorocaba/SP
+                Rua Waldemar Rodrigues de Barros, <br /> 200 - Estância Conceição,
+                Sorocaba/SP
               </address>
             </div>
             <div className="flex space-x-3">
               <Phone aria-hidden className="text-blue" />
-              <p>(15) 99817-9909 • (15) 3318-1531</p>
+              <p>(15) 3272-1467</p>
             </div>
           </div>
         </div>

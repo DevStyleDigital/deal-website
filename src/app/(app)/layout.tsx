@@ -1,11 +1,17 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { CoreAg } from 'assets/core-ag';
 import { Logo } from 'assets/logo';
 import { WhatsApp } from 'assets/whatsapp';
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from 'components/ui/dialog';
 import { Facebook, Instagram, MapPin, Menu, Phone } from 'lucide-react';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
 
-const AppLayout: BTypes.NLPage = ({ children }) => {
+const AppLayout: BTypes.NLPage<{}, true> = async ({ children }) => {
+  const cookiesStore = cookies();
+  const supabase = createServerComponentClient({ cookies: () => cookiesStore });
+  const enterprises = (await supabase.from('enterprises').select('id, name')).data || [];
+
   return (
     <>
       <header className="absolute top-0 left-0 w-full z-50">
@@ -129,21 +135,24 @@ const AppLayout: BTypes.NLPage = ({ children }) => {
             <div className="flex space-x-3">
               <MapPin aria-hidden />
               <address className="not-italic text-white">
-                Av. Ademar de Barros, 195 <br /> Vila Trujillo, Sorocaba/SP
+                Rua Waldemar Rodrigues de Barros, <br /> 200 - Estância Conceição,
+                Sorocaba/SP
               </address>
             </div>
             <div className="flex space-x-3">
               <Phone aria-hidden />
-              <p className="text-white">
-                (15) 99817-9909 <br /> (15) 3318-1531
-              </p>
+              <p className="text-white">(15) 3272-1467</p>
             </div>
           </div>
           <div className="flex flex-col space-y-4 max-xs:items-center max-xs:w-full">
             <h3>Empreendimentos</h3>
             <div>
               <ul>
-                <li>Haus Residence Club</li>
+                {enterprises.map(({ id, name }) => (
+                  <li key={id}>
+                    <Link href={`/empreendimentos/${id}`}>{name}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

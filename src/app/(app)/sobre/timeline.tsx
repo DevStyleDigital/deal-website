@@ -11,11 +11,13 @@ const PROJECTS = [
     name: 'Edifício Labrunetti',
     year: 2013,
     id: 'labrunetti',
+    logo: true,
   },
   {
     name: 'Edifício Wilma',
     year: 2015,
     id: 'wilma',
+    logo: true,
   },
   {
     name: 'Residencial Martins de Lara',
@@ -32,7 +34,21 @@ const PROJECTS = [
     year: 2020,
     id: 'vivenda',
   },
+  {
+    name: 'Haus',
+    year: 2024,
+    id: 'haus',
+  },
 ];
+
+const SlideLogo = () => (
+  <>
+    <div className="w-64 h-80 border-gold border-2 flex items-center justify-center">
+      <Logo aria-hidden className="fill-gold" />
+      <span className="sr-only">Deal empreendimentos</span>
+    </div>
+  </>
+);
 
 export const Timeline = () => {
   return (
@@ -81,14 +97,20 @@ export const Timeline = () => {
               />
               <span className="absolute left-1/2 top-full -translate-y-1/2 w-px h-9 bg-gold" />
             </div>
-            <Image
-              src={`/timeline/${project.id}.webp`}
-              alt=""
-              aria-hidden
-              width={1036}
-              height={1284}
-              className="w-64 h-80 object-cover object-center border-gold border-2"
-            />
+            {project.logo ? (
+              <SlideLogo />
+            ) : (
+              <>
+                <Image
+                  src={`/timeline/${project.id}.webp`}
+                  alt=""
+                  aria-hidden
+                  width={1036}
+                  height={1284}
+                  className="w-64 h-80 object-cover object-center border-gold border-2"
+                />
+              </>
+            )}
             <p>{project.name}</p>
           </SwiperSlide>
         ))}
