@@ -52,7 +52,7 @@ export const UploadImageInput = ({
           </div>
         ) : previewURL ? (
           <Image
-            src={previewURL}
+            src={`${previewURL}?d=${Date.now()}`}
             alt=""
             className="pointer-events-none absolute h-[95%] w-[95%] rounded-md object-center object-cover"
             width={2000}
