@@ -21,7 +21,7 @@ export const EnterpriseEmphasis = ({
         aria-hidden
         className="border-gold border-r-[1px] border-t-[1px] w-20 h-20 absolute top-0 right-4"
       />
-      <div className="w-full h-full flex-1 max-xl:relative">
+      <div className="w-full h-full max-xl:relative">
         {!!enterpriseEmphasis.banner_emphasis.url && (
           <Image
             alt={enterpriseEmphasis.banner_emphasis?.label || ''}
