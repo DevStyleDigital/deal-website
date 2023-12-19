@@ -25,7 +25,7 @@ export const EnterpriseEmphasis = ({
         {!!enterpriseEmphasis.banner_emphasis.url && (
           <Image
             alt={enterpriseEmphasis.banner_emphasis?.label || ''}
-            src={enterpriseEmphasis.banner_emphasis.url}
+            src={`${enterpriseEmphasis.banner_emphasis.url}?d=${Date.now()}`}
             width={2860}
             height={1080}
             priority

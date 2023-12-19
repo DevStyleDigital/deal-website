@@ -51,7 +51,7 @@ const Enterprise: BTypes.NPage<{ params: { id: string } }, true> = async ({ para
         {!!enterprise.banner_emphasis.url && (
           <Image
             alt={enterprise.banner_emphasis?.label || ''}
-            src={enterprise.banner_emphasis.url}
+            src={`${enterprise.banner_emphasis.url}?d=${Date.now()}`}
             width={2860}
             height={1080}
             priority

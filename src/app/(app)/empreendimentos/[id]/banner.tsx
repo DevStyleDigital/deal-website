@@ -40,7 +40,7 @@ export const Banner = ({
       {!!src && (
         <Image
           alt={alt || ''}
-          src={src}
+          src={`${src}?d=${Date.now()}`}
           width={1920}
           height={1080}
           priority
