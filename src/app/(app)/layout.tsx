@@ -3,7 +3,7 @@ import { CoreAg } from 'assets/core-ag';
 import { Logo } from 'assets/logo';
 import { WhatsApp } from 'assets/whatsapp';
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from 'components/ui/dialog';
-import { Facebook, Instagram, Linkedin, MapPin, Menu, Phone, Youtube } from 'lucide-react';
+import { Instagram, Linkedin, MapPin, Menu, Phone, Youtube } from 'lucide-react';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 
@@ -161,17 +161,29 @@ const AppLayout: BTypes.NLPage<{}, true> = async ({ children }) => {
             <div className="flex flex-col justify-between h-full space-y-8">
               <ul className="flex space-x-3 max-xs:justify-center">
                 <li>
-                  <a href="https://www.linkedin.com/company/95065216/admin/feed/posts/" aria-label="Linkedin" target='_blank' >
+                  <a
+                    href="https://www.linkedin.com/company/95065216/admin/feed/posts/"
+                    aria-label="Linkedin"
+                    target="_blank"
+                  >
                     <Linkedin />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.instagram.com/dealempreendimentos?igshid=YzVkODRmOTdmMw==" aria-label="Instagram" target='_blank'>
+                  <a
+                    href="https://www.instagram.com/dealempreendimentos?igshid=YzVkODRmOTdmMw=="
+                    aria-label="Instagram"
+                    target="_blank"
+                  >
                     <Instagram />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.youtube.com/@DealEmpreendimentos" aria-label="Youtube" target='_blank'>
+                  <a
+                    href="https://www.youtube.com/@DealEmpreendimentos"
+                    aria-label="Youtube"
+                    target="_blank"
+                  >
                     <Youtube />
                   </a>
                 </li>
@@ -180,7 +192,7 @@ const AppLayout: BTypes.NLPage<{}, true> = async ({ children }) => {
                 {/* <a href='https://coreag.com.br' className="sr-only cursor-pointer">
                   <span lang="en-us">Intelligence by</span> Core.Ag
                 </a> */}
-                <a href="https://coreag.com.br" target='_blank'>
+                <a href="https://coreag.com.br" target="_blank">
                   <CoreAg aria-hidden className="h-3 w-auto" />
                 </a>
               </div>

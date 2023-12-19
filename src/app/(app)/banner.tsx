@@ -20,8 +20,13 @@ const banners: Record<
     link: { label: 'saiba mais', href: '/sobre' },
   },
   personalization: { subtitle: 'Personalização', desc: 'Muito mais que uma' },
-  about: { subtitle: 'Respeito & <br /> Transparência', smallTitle: 'em todos os projetos' },
-  enterprises: { subtitle: 'Empreendimentos <br /> incomparáveis' },
+  about: {
+    subtitle: 'Respeito & <br /> Transparência',
+    smallTitle: 'em todos os projetos',
+  },
+  enterprises: {
+    subtitle: 'Empreendimentos <br /> incomparáveis',
+  },
   contact: { subtitle: 'Fale com a Deal' },
 };
 
@@ -41,14 +46,16 @@ export const Banner = ({ banner }: { banner: keyof typeof banners }) => {
 
       <div className="absolute w-full h-full max-w-7xl left-1/2 -translate-x-1/2 -top-20">
         <div
-          className={`absolute flex flex-col space-y-4 top-1/2 mx-8 w-fit max-w-[460px] h-fit shadow-[0px_4px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl p-12 text-white ${
-            bannerSelected.invertAlign ? 'right-0' : ''
-          }`}
+          className={`absolute flex flex-col space-y-4 top-1/2 mx-8 w-fit max-w-[460px] h-fit shadow-[0px_4px_35px_rgba(0,0,0,0.6)] backdrop-blur-xl p-12 text-white 
+            ${bannerSelected.invertAlign ? 'right-0' : ''}`}
         >
           {bannerSelected.desc && <span className="text-xl">{bannerSelected.desc}</span>}
           {bannerSelected.title && <h1>{bannerSelected.title}</h1>}
           {bannerSelected.subtitle && (
-            <h2 className="max-xs:break-all max-sm:text-2xl max-[350px]:text-base" dangerouslySetInnerHTML={{__html: bannerSelected.subtitle}}/ >
+            <h2
+              className="max-xs:break-all max-sm:text-2xl max-[350px]:text-base"
+              dangerouslySetInnerHTML={{ __html: bannerSelected.subtitle }}
+            />
           )}
           {bannerSelected.smallTitle && (
             <h3 className="text-4xl max-sm:text-3xl">{bannerSelected.smallTitle}</h3>

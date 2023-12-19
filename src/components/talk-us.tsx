@@ -13,14 +13,13 @@ export const TalkUs = () => (
       variant="gold"
       size="lg"
     >
-    <a
-      href={`https://wa.me/15998179909?text=${encodeURIComponent(
-        'Olá vim do site!',
-      )}`} target="_blank"
-    >
+      <a
+        href={`https://wa.me/15998179909?text=${encodeURIComponent('Olá vim do site!')}`}
+        target="_blank"
+      >
         <WhatsApp className="w-6 h-6 fill-gold mr-4" aria-hidden />
         Fale no WhatsApp
-    </a>
+      </a>
     </Button>
   </section>
 );

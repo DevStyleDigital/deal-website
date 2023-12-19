@@ -14,11 +14,12 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error",{
+      "endOfLine": "auto"}
+    ],
     "prefer-template": "error",
     "react/display-name": "off",
     "prefer-const": "error",
-
     "quotes": [
       "error",
       "single",
