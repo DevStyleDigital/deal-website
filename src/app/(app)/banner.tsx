@@ -20,8 +20,8 @@ const banners: Record<
     link: { label: 'saiba mais', href: '/sobre' },
   },
   personalization: { subtitle: 'Personalização', desc: 'Muito mais que uma' },
-  about: { subtitle: 'Respeito & Transparência', smallTitle: 'em todos os projetos' },
-  enterprises: { subtitle: 'Empreendimentos incomparáveis' },
+  about: { subtitle: 'Respeito & <br /> Transparência', smallTitle: 'em todos os projetos' },
+  enterprises: { subtitle: 'Empreendimentos <br /> incomparáveis' },
   contact: { subtitle: 'Fale com a Deal' },
 };
 
@@ -48,10 +48,10 @@ export const Banner = ({ banner }: { banner: keyof typeof banners }) => {
           {bannerSelected.desc && <span className="text-xl">{bannerSelected.desc}</span>}
           {bannerSelected.title && <h1>{bannerSelected.title}</h1>}
           {bannerSelected.subtitle && (
-            <h2 className="max-xs:break-all">{bannerSelected.subtitle}</h2>
+            <h2 className="max-xs:break-all max-sm:text-2xl max-[350px]:text-base" dangerouslySetInnerHTML={{__html: bannerSelected.subtitle}}/ >
           )}
           {bannerSelected.smallTitle && (
-            <h3 className="text-4xl">{bannerSelected.smallTitle}</h3>
+            <h3 className="text-4xl max-sm:text-3xl">{bannerSelected.smallTitle}</h3>
           )}
           {bannerSelected.link && (
             <Button asChild className="w-fit uppercase" variant="light">

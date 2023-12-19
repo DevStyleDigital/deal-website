@@ -26,10 +26,13 @@ const About = () => {
             variant="gold"
             size="lg"
           >
-            <Link href="/" target="_blank">
+          <a
+            href={`https://wa.me/15998179909?text=${encodeURIComponent(
+              'Olá vim do site!',
+            )}`} target="_blank">
               <WhatsApp className="w-6 h-6 fill-gold mr-4" aria-hidden />
               Fale no WhatsApp
-            </Link>
+          </a>
           </Button>
           <div className="flex xl:flex-col max-550px:flex-col max-550px:items-center max-xl:space-x-4 max-xl:justify-between xl:space-y-4 max-sm:w-full">
             <div className="flex space-x-3">

@@ -44,7 +44,7 @@ export const Banner = ({
           width={1920}
           height={1080}
           priority
-          className="h-full object-cover object-center"
+          className="w-full h-full object-cover object-center"
         />
       )}
 

@@ -32,7 +32,7 @@ export const UploadImageInput = ({
     if (!file) return null;
     return typeof file === 'string' ? file : URL.createObjectURL(file);
   }, [file]);
-
+  console.log(previewURL, 'URL')
   return (
     <div className="w-full">
       <label
@@ -52,7 +52,7 @@ export const UploadImageInput = ({
           </div>
         ) : previewURL ? (
           <Image
-            src={`${previewURL}?d=${Date.now()}`}
+            src={previewURL.includes('blob') ? previewURL :`${previewURL}?d=${Date.now()}`}
             alt=""
             className="pointer-events-none absolute h-[95%] w-[95%] rounded-md object-center object-cover"
             width={2000}
