@@ -140,7 +140,7 @@ export const EnterpriseForm = ({
                 ? {
                     url: await uploadFile(`enterprise-${id}`, banner, 'banner'),
                     eid: id,
-                    id: 'banner',
+                    id: Date.now().toString(),
                     label: '',
                   }
                 : undefined,
@@ -152,7 +152,7 @@ export const EnterpriseForm = ({
                       'banner-emphasis',
                     ),
                     eid: id,
-                    id: 'banner-emphasis',
+                    id: Date.now().toString(),
                     label: '',
                   }
                 : undefined,
