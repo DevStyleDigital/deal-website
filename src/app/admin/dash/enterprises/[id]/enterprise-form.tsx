@@ -138,7 +138,11 @@ export const EnterpriseForm = ({
               datasheet,
               banner: banner
                 ? {
-                    url: await uploadFile(`enterprise-${id}`, banner, 'banner'),
+                    url: await uploadFile(
+                      `enterprise-${id}`,
+                      banner,
+                      Date.now().toString(),
+                    ),
                     eid: id,
                     id: Date.now().toString(),
                     label: '',
@@ -149,7 +153,7 @@ export const EnterpriseForm = ({
                     url: await uploadFile(
                       `enterprise-${id}`,
                       bannerEmphasis,
-                      'banner-emphasis',
+                      Date.now().toString(),
                     ),
                     eid: id,
                     id: Date.now().toString(),
