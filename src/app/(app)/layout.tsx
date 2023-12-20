@@ -189,10 +189,14 @@ const AppLayout: BTypes.NLPage<{}, true> = async ({ children }) => {
                 </li>
               </ul>
               <div>
-                {/* <a href='https://coreag.com.br' className="sr-only cursor-pointer">
-                  <span lang="en-us">Intelligence by</span> Core.Ag
-                </a> */}
-                <a href="https://coreag.com.br" target="_blank">
+                <a
+                  href="https://coreag.com.br"
+                  target="_blank"
+                  className="cursor-pointer"
+                >
+                  <span className="sr-only">
+                    <span lang="en-us">Intelligence by</span> Core.Ag
+                  </span>
                   <CoreAg aria-hidden className="h-3 w-auto" />
                 </a>
               </div>
