@@ -1,6 +1,6 @@
 import { type Metadata } from 'next';
-import { Roboto } from 'next/font/google';
 import { Toast } from './toast';
+import localFont from 'next/font/local';
 
 import 'styles/globals.css';
 
@@ -12,9 +12,25 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthProvider } from 'contexts/auth';
 import Script from 'next/script';
 
-const roboto = Roboto({
-  weight: ['400', '700', '900'],
-  subsets: ['latin'],
+const Din = localFont({
+  src: [
+    {
+      path: './din.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './din-medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+});
+
+const Ivy = localFont({
+  src: './ivy.woff2',
+  display: 'swap',
+  variable: '--font-secondary',
 });
 
 export const metadata: Metadata = {
@@ -25,7 +41,7 @@ const GTM_ID = 'GTM-PL738CTD';
 
 const RootLayout: BTypes.NLPage = ({ children }) => {
   return (
-    <html lang="pt-br" className={roboto.className}>
+    <html lang="pt-BR" className={`${Din.className} ${Ivy.variable}`}>
       <head>
         <Script
           id="gtm-script"

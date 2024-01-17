@@ -41,11 +41,14 @@ p, address {
 }
 
 h1 {
+  font-family: var(--font-secondary);
   @apply lg:text-7xl uppercase md:text-6xl sm:text-5xl text-4xl max-[340px]:text-3xl
 }
 h2 {
+  font-family: var(--font-secondary);
   @apply md:text-5xl text-3xl max-[340px]:text-2xl
 }
 h3 {
+  font-family: var(--font-secondary);
   @apply md:text-2xl text-xl
 }
