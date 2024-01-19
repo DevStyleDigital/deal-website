@@ -36,14 +36,26 @@ export async function deleteEnterprise(
   return 'success';
 }
 
+function moveItemToFirst(array: any[], id: string) {
+  const i = array.findIndex((enterprise) => enterprise.id === id);
+
+  if (i >= array.length || i < 0) return array;
+
+  const item = array.splice(i, 1)[0];
+  array.unshift(item);
+
+  return array;
+}
+
 export async function getPartialOfEnterprises(
   supabase: SupabaseClient<any, 'public', any>,
 ): Promise<EnterprisePartial[]> {
-  return (
+  return moveItemToFirst(
     (
       await supabase
         .from('enterprises')
         .select('id, state, city, banner_emphasis, name, type, desc, status')
-    ).data || []
+    ).data || [],
+    '93b252e8-fe0f-4a49-82f8-9a3bc3cc0b73',
   );
 }
