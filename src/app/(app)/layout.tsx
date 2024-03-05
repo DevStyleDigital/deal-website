@@ -136,7 +136,7 @@ const AppLayout: BTypes.NLPage<{}, true> = async ({ children }) => {
               <MapPin aria-hidden />
               <address className="not-italic text-white">
                 Rua Waldemar Rodrigues de Barros, <br /> 200 - Estância Conceição,
-                Sorocaba/SP
+                Itapetininga/SP
               </address>
             </div>
             <div className="flex space-x-3">
